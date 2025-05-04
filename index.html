@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sude 21</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, rgba(255, 192, 203, 0.9), rgba(173, 216, 230, 0.9));
+    }
+
+    #welcome-message {
+      font-size: 25px;
+      font-weight: bold;
+      color: rgb(0, 141, 173);
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+
+    #welcome-message h1 {
+      color: black;
+      margin: 0;
+    }
+
+    h2 {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      color: #333;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      width: 250px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      margin-top: 15px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e0559c;
+    }
+  </style>
+</head>
+<body>
+  <div id="welcome-message">
+    <h1>Hoşgeldiniz</h1>
+    <p>Bu site Keşanlı Sude'nin 21. doğum gününü kutlamak için oluşturulmuştur.</p>
+  </div>
+
+  <h2>
+    Şifreyi bulmak için cümlenin devamını getir.<br>
+    (Şifreyi küçük harflerle ve birleşik yaz).<br>
+    Bir şarkı istiyorum senden kardeş, son bir şarkı. <br>
+    <strong>Bir ihtimal daha var o da...</strong> 😉
+  </h2>
+  
+  <input type="password" id="password" placeholder="Şifreyi gir" autofocus>
+  <br>
+  <button onclick="checkPassword()" id="loginBtn">Giriş Yap</button>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim().toLowerCase();
+      if (input === "ölmekmidersin") {
+        window.location.href = "test.html";
+      } else {
+        alert("Yanlış şifre! 🙃");
+      }
+    }
+
+    document.getElementById("password").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        document.getElementById("loginBtn").click();
+      }
+    });
+  </script>
+</body>
+</html>

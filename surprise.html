@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sürpriz!</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background: linear-gradient(135deg, #f8f0ff, #e0f7fa);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0.85; /* Opaklık ayarını 0.85 olarak arttırdım */
+    }
+
+    h1 {
+      color: #c71585;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+    }
+
+    button:hover {
+      background-color: #e0559c;
+    }
+
+    iframe {
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    #giftButton {
+      position: absolute;
+      bottom: 20px;
+    }
+
+    /* Açılış mesaj kutusu */
+    #introBox {
+      background-color: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 90%;
+      width: 500px;
+      z-index: 1000;
+    }
+
+    #video {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="introBox">
+    <h2>🎂 Doğum Günün Kutlu Olsun Sudeee! 🎉</h2>
+    <p>
+      Sevgili Sude, bugün senin doğum günün!<br>
+      Seninle kısa zamanda oluşan samimiyetimiz nekadar içten ve sıcak bir kalbin olduğunu bana gösterdi.Seninle kurduğumuz bu bağ, sanki yıllardır birbirimizi tanıyormuşuz gibi hissettiriyor.<br><br>
+      Hazırsan küçük bir sürprizim var... 🎁
+    </p>
+    <button onclick="startSurprise()">Hazırım 🎬</button>
+  </div>
+
+  <h1 style="display: none;" id="mainTitle">🎂 21. Yaş Günün Kutlu Olsun Sudeee! 🎉</h1>
+  <p id="mainText" style="display: none;">Doğum günü hediyen için aşağıya tıkla! 👇</p>
+
+  <button id="giftButton" onclick="showGift()" style="display: none;">Hediyeyi Göster</button>
+
+  <div id="video"></div>
+
+  <!-- Konfeti kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    let isVideoShown = false;
+    let isButtonClicked = false;
+    let buttonStartPos = { x: 0, y: 0 };
+    const button = document.getElementById("giftButton");
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    window.onload = () => {
+      const buttonRect = button.getBoundingClientRect();
+      buttonStartPos = { x: buttonRect.left, y: buttonRect.top };
+    };
+
+    if (!isMobile) {
+      button.addEventListener("mousemove", function(e) {
+        if (isButtonClicked) return;
+
+        const buttonRect = button.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const offsetX = mouseX - (buttonRect.left + buttonRect.width / 2);
+        const offsetY = mouseY - (buttonRect.top + buttonRect.height / 2);
+
+        const randomX = Math.random() * window.innerWidth - buttonRect.width;
+        const randomY = Math.random() * window.innerHeight - buttonRect.height;
+
+        button.style.transform = `translate(${(offsetX + randomX) / 5}px, ${(offsetY + randomY) / 5}px)`;
+      });
+
+      button.addEventListener("mouseleave", function() {
+        if (isButtonClicked) return;
+        button.style.transform = "translate(0px, 0px)";
+      });
+    }
+
+    function startSurprise() {
+      document.getElementById("introBox").style.display = "none";
+      document.getElementById("mainTitle").style.display = "block";
+      document.getElementById("mainText").style.display = "block";
+      document.getElementById("giftButton").style.display = "block";
+    }
+
+    function showGift() {
+      if (isButtonClicked) return;
+      isButtonClicked = true;
+
+      // 🎊 Konfeti patlat (efekt sayısını arttırıp, renkleri çeşitlendirdim)
+      confetti({
+        particleCount: 700,  // Konfeti sayısını arttırdım
+        spread: 160,
+        origin: { y: 0.6 },
+        colors: ['#ff69b4', '#e0559c', '#ffb6c1', '#c1f0f6', '#ff6347', '#ff1493', '#20b2aa', '#ffcc00']
+      });
+
+      if (!isVideoShown) {
+        const videoContainer = document.getElementById("video");
+        const iframe = document.createElement("iframe");
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.src = "https://www.youtube.com/embed/r9buaZ8OgKs?autoplay=1&start=22";
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        iframe.allow = "autoplay; encrypted-media";
+        iframe.allowFullscreen = true;
+        videoContainer.appendChild(iframe);
+        videoContainer.style.display = "block";
+        isVideoShown = true;
+      }
+
+      button.style.display = "none";
+      button.style.transition = "transform 0.5s ease-in-out";
+      button.style.transform = `translate(${buttonStartPos.x - button.offsetLeft}px, ${buttonStartPos.y - button.offsetTop}px)`;
+    }
+  </script>
+</body>
+</html>

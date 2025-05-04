@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sude Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+    }
+
+    .test-container {
+      background-color: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 900px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-size: 18px;
+    }
+
+    .choices {
+      margin-top: 10px;
+    }
+
+    .choices label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .choices input[type="radio"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 5px;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e0559c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="test-container">
+    <h2>Sudeyi ne kadar tanıyorsun testi</h2>
+    
+    <form id="quizForm">
+        <div class="question" id="q1"> 
+            <p>1. Sude Ceren Sezgin 03/05/2025 tarihinde yaşının 30 olmasına kaç yıl kaldığını hesaplamak isterse sonucu kaç bulur?</p>
+            <div class="choices">
+              <label>
+                <input type="radio" name="q1" value="A"> A) 3
+              </label>
+              <label>
+                <input type="radio" name="q1" value="B"> B) 8
+              </label>
+              <label>
+                <input type="radio" name="q1" value="C"> C) 10
+              </label>
+              <label>
+                <input type="radio" name="q1" value="D"> D) 9
+              </label>
+              <label>
+                <input type="radio" name="q1" value="E"> E) 31
+              </label>
+            </div>
+        </div>
+          
+        <div class="question" id="q2"> 
+            <p>2. Sude Ceren Sezgin nerelidir?</p>
+            <div class="choices">
+              <label>
+                <input type="radio" name="q2" value="A"> A) Ereğli
+              </label>
+              <label>
+                <input type="radio" name="q2" value="B"> B) Gemlik
+              </label>
+              <label>
+                <input type="radio" name="q2" value="C"> C) Susurluk
+              </label>
+              <label>
+                <input type="radio" name="q2" value="D"> D) Yüksekova
+              </label>
+              <label>
+                <input type="radio" name="q2" value="E"> E) Keşan
+              </label>
+            </div>
+        </div>
+      
+        <div class="question" id="q3"> 
+            <p>3. Çok değerli halk ozanlarımızdan olan Alizade isimli sanatçının <i>Special</i> şarkısında geçen "Esmer, kumral, sarışın,..." gibi ifadelerin ardından hangi kelimeyi kullanmıştır?</p>
+            <div class="choices">
+              <label>
+                <input type="radio" name="q3" value="A"> A) Kızıl
+              </label>
+              <label>
+                <input type="radio" name="q3" value="B"> B) Çikolata
+              </label>
+              <label>
+                <input type="radio" name="q3" value="C"> C) Dondurma
+              </label>
+              <label>
+                <input type="radio" name="q3" value="D"> D) Maviş
+              </label>
+              <label>
+                <input type="radio" name="q3" value="E"> E) Hiçbiri
+              </label>
+            </div>
+        </div>
+      
+        <div class="question" id="q4"> 
+            <p>4. Sude'nin okuldaki arkadaş grubunun en çok oturduğu mekan neresidir?</p>
+            <div class="choices">
+              <label>
+                <input type="radio" name="q4" value="A"> A) Pablo
+              </label>
+              <label>
+                <input type="radio" name="q4" value="B"> B) Talhanın evi
+              </label>
+              <label>
+                <input type="radio" name="q4" value="C"> C) Notbad
+              </label>
+              <label>
+                <input type="radio" name="q4" value="D"> D) Freed
+              </label>
+              <label>
+                <input type="radio" name="q4" value="E"> E) Mysosdo
+              </label>
+            </div>
+        </div>
+
+        <div class="question" id="q5"> 
+            <p>5. Sude'nin arkadaş grubunda en iyi "babacık" şakası yapan kişi aşağıdakilerden hangisidir?</p>
+            <div class="choices">
+              <label>
+                <input type="radio" name="q5" value="A"> A) Özhan
+              </label>
+              <label>
+                <input type="radio" name="q5" value="B"> B) Sude
+              </label>
+              <label>
+                <input type="radio" name="q5" value="C"> C) Nur
+              </label>
+              <label>
+                <input type="radio" name="q5" value="D"> D) Utku
+              </label>
+              <label>
+                <input type="radio" name="q5" value="E"> E) Talha
+              </label>
+            </div>
+        </div>
+
+      <div class="button-container">
+        <button type="button" onclick="submitQuiz()">Testi Tamamla</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: 'D',
+        q2: 'E',
+        q3: 'B',
+        q4: 'C',
+        q5: 'D'
+      };
+
+      let correctAnswers = 0;
+      Object.keys(answers).forEach(q => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          correctAnswers++;
+        }
+      });
+
+      if (correctAnswers === 5) {
+        window.location.href = 'surprise.html'; // Testi doğru geçerse surprise sayfasına yönlendirilir
+      } else {
+        alert("Yanlış cevap! 🙁");
+      }
+    }
+  </script>
+
+</body>
+</html>
