@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      opacity: 0.85; /* Opaklık ayarını 0.85 olarak arttırdım */
+      opacity: 0.85;
     }
 
     h1 {
@@ -49,8 +49,17 @@
 
     iframe {
       margin-top: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 16px; /* Köşe yuvarlatma */
+      box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Gölgelendirme */
+      width: 560px; /* Sabit genişlik */
+      height: 315px; /* Sabit yükseklik */
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+
+    iframe:hover {
+      transform: scale(1.05);  /* Hover efektiyle büyütme */
     }
 
     #giftButton {
@@ -58,7 +67,6 @@
       bottom: 20px;
     }
 
-    /* Açılış mesaj kutusu */
     #introBox {
       background-color: white;
       border-radius: 16px;
@@ -70,9 +78,10 @@
     }
 
     #video {
-      display: none;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
     }
-
   </style>
 </head>
 <body>
@@ -80,7 +89,7 @@
     <h2>🎂 Doğum Günün Kutlu Olsun Sudeee! 🎉</h2>
     <p>
       Sevgili Sude, bugün senin doğum günün!<br>
-      Seninle kısa zamanda oluşan samimiyetimiz nekadar içten ve sıcak bir kalbin olduğunu bana gösterdi.Seninle kurduğumuz bu bağ, sanki yıllardır birbirimizi tanıyormuşuz gibi hissettiriyor.<br><br>
+      Seninle kısa zamanda oluşan samimiyetimiz ne kadar içten ve sıcak bir kalbin olduğunu bana gösterdi. Seninle kurduğumuz bu bağ, sanki yıllardır birbirimizi tanıyormuşuz gibi hissettiriyor.<br><br>
       Hazırsan küçük bir sürprizim var... 🎁
     </p>
     <button onclick="startSurprise()">Hazırım 🎬</button>
@@ -93,7 +102,6 @@
 
   <div id="video"></div>
 
-  <!-- Konfeti kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
@@ -111,17 +119,11 @@
     if (!isMobile) {
       button.addEventListener("mousemove", function(e) {
         if (isButtonClicked) return;
-
         const buttonRect = button.getBoundingClientRect();
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        const offsetX = mouseX - (buttonRect.left + buttonRect.width / 2);
-        const offsetY = mouseY - (buttonRect.top + buttonRect.height / 2);
-
+        const offsetX = e.clientX - (buttonRect.left + buttonRect.width / 2);
+        const offsetY = e.clientY - (buttonRect.top + buttonRect.height / 2);
         const randomX = Math.random() * window.innerWidth - buttonRect.width;
         const randomY = Math.random() * window.innerHeight - buttonRect.height;
-
         button.style.transform = `translate(${(offsetX + randomX) / 5}px, ${(offsetY + randomY) / 5}px)`;
       });
 
@@ -142,9 +144,8 @@
       if (isButtonClicked) return;
       isButtonClicked = true;
 
-      // 🎊 Konfeti patlat (efekt sayısını arttırıp, renkleri çeşitlendirdim)
       confetti({
-        particleCount: 700,  // Konfeti sayısını arttırdım
+        particleCount: 700,
         spread: 160,
         origin: { y: 0.6 },
         colors: ['#ff69b4', '#e0559c', '#ffb6c1', '#c1f0f6', '#ff6347', '#ff1493', '#20b2aa', '#ffcc00']
@@ -153,15 +154,13 @@
       if (!isVideoShown) {
         const videoContainer = document.getElementById("video");
         const iframe = document.createElement("iframe");
-        iframe.width = "560";
-        iframe.height = "315";
-        iframe.src = "https://www.youtube.com/embed/r9buaZ8OgKs?autoplay=1&start=22";
+        iframe.src = "https://www.youtube.com/embed/pOj9qpy0cis?si=7PFGSNdg8E6LMchh&autoplay=1";
         iframe.title = "YouTube video player";
         iframe.frameBorder = "0";
-        iframe.allow = "autoplay; encrypted-media";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
         iframe.allowFullscreen = true;
         videoContainer.appendChild(iframe);
-        videoContainer.style.display = "block";
         isVideoShown = true;
       }
 
